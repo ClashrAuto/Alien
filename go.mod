@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	gioui.org v0.0.0-20200605094555-4f64ac17368f
+	gioui.org/ui v0.0.0-20190926171558-ce74bc0cbaea
 	github.com/ClashrAuto/Clashr v0.0.0-20200508085544-280623be37c5
 	github.com/ClashrAuto/gossr v0.0.0-20200508085025-725f4805e0b4 // indirect
 	github.com/Dreamacro/go-shadowsocks2 v0.1.5 // indirect

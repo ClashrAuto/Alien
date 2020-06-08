@@ -1,4 +1,4 @@
-package main
+package clash
 
 import (
 	"flag"
@@ -12,8 +12,6 @@ import (
 	"github.com/ClashrAuto/Clashr/hub"
 
 	log "github.com/sirupsen/logrus"
-
-	"gioui.org/ui/app"
 )
 
 var (
@@ -31,13 +29,13 @@ func error(e string) {
 	log.Fatalf("Error: %s", e)
 }
 
-func main() {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println("panic recover")
-			go main()
-		}
-	}()
+func Clash() {
+	// defer func() {
+	// 	if err := recover(); err != nil {
+	// 		fmt.Println("panic recover")
+	// 		go main()
+	// 	}
+	// }()
 
 	if version {
 		fmt.Printf("Clash %s %s %s %s\n", C.Version, runtime.GOOS, runtime.GOARCH, C.BuildTime)
@@ -65,7 +63,4 @@ func main() {
 	// sigCh := make(chan os.Signal, 1)
 	// signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)
 	// <-sigCh
-	go Windows()
-
-	app.Main()
 }
