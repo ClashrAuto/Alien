@@ -15,8 +15,8 @@ import (
 
 	"gioui.org/ui/app"
 
-	"github.com/ClashrAuto/Alien/libs/clash"
-	"github.com/ClashrAuto/Alien/libs/ui"
+	"github.com/ireoo/alien/libs/clash"
+	"github.com/ireoo/alien/libs/ui"
 )
 
 func main() {
