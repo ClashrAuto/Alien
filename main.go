@@ -14,58 +14,20 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	"gioui.org/ui/app"
+
+	"github.com/ClashrAuto/Alien/libs/clash"
+	"github.com/ClashrAuto/Alien/libs/ui"
 )
-
-var (
-	version bool
-	homedir string
-)
-
-func init() {
-	flag.StringVar(&homedir, "d", "", "set configuration directory")
-	flag.BoolVar(&version, "v", false, "show current version of clash")
-	flag.Parse()
-}
-
-func error(e string) {
-	log.Fatalf("Error: %s", e)
-}
 
 func main() {
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Println("panic recover")
-			go main()
-		}
+
+	go func() {
+		Clash()
+		Windows()
 	}()
-
-	if version {
-		fmt.Printf("Clash %s %s %s %s\n", C.Version, runtime.GOOS, runtime.GOARCH, C.BuildTime)
-		return
-	}
-
-	if homedir != "" {
-		if !filepath.IsAbs(homedir) {
-			currentDir, _ := os.Getwd()
-			homedir = filepath.Join(currentDir, homedir)
-		}
-		C.SetHomeDir(homedir)
-	}
-
-	if err := config.Init(C.Path.HomeDir()); err != nil {
-		// log.Fatalf("Initial configuration directory error: %s", err.Error())
-		error(err.Error())
-	}
-
-	if err := hub.Parse(); err != nil {
-		// log.Fatalf("Parse config error: %s", err.Error())
-		error(err.Error())
-	}
 
 	// sigCh := make(chan os.Signal, 1)
 	// signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)
 	// <-sigCh
-	go Windows()
-
 	app.Main()
 }
