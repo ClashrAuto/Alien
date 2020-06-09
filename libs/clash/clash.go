@@ -39,7 +39,7 @@ func Clash() {
 
 	if version {
 		fmt.Printf("Clash %s %s %s %s\n", C.Version, runtime.GOOS, runtime.GOARCH, C.BuildTime)
-		return
+		os.Exit(0)
 	}
 
 	if homedir != "" {
@@ -51,13 +51,13 @@ func Clash() {
 	}
 
 	if err := config.Init(C.Path.HomeDir()); err != nil {
-		// log.Fatalf("Initial configuration directory error: %s", err.Error())
-		error(err.Error())
+		log.Fatalf("Initial configuration directory error: %s", err.Error())
+		// error(err.Error())
 	}
 
 	if err := hub.Parse(); err != nil {
-		// log.Fatalf("Parse config error: %s", err.Error())
-		error(err.Error())
+		log.Fatalf("Parse config error: %s", err.Error())
+		// error(err.Error())
 	}
 
 	// sigCh := make(chan os.Signal, 1)
