@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/ClashrAuto/alien/libs/clash"
-	"github.com/ClashrAuto/alien/libs/ui"
+	"github.com/andlabs/ui"
 )
 
 func main() {
 	clash.Clash()
-	ui.Windows()
+	ui.Main(window.setupUI)
 }
